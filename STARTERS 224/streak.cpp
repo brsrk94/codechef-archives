@@ -9,9 +9,7 @@ int main() {
 	while (T--) {
 	    int N;
 	    cin >> N;
-	    
 	    int now = 0, best = 0;
-	    
 	    for (int i = 0; i < N; i++) {
 	        int A;
 	        cin >> A;
@@ -24,11 +22,6 @@ int main() {
 	            now = 0;
 	        }
 	    }
-	    
 	    cout << best << endl;
 	}
-	
-
-	
-
 }
