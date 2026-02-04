@@ -14,7 +14,7 @@ body {
     background: #faf9f6;
     color: #1e3a8a;
     padding: 40px 20px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .container {
@@ -24,32 +24,44 @@ body {
 
 /* Contest title */
 .contest {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .contest-title {
-    font-size: 2.2em;
-    margin-bottom: 20px;
+    font-size: 2.3em;
+    margin-bottom: 30px;
     border-bottom: 2px solid #1e3a8a;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
+}
+
+/* Filename separator */
+.filename {
+    margin: 35px 0 10px;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+}
+
+.filename::before,
+.filename::after {
+    content: "——";
+    margin: 0 10px;
+    opacity: 0.6;
 }
 
 /* Code */
 pre {
-    background: transparent;
-    padding: 0;
-    margin-bottom: 30px;
+    margin: 0 0 30px;
     overflow-x: auto;
 }
 
 code {
     font-family: "Courier New", monospace;
     font-size: 0.95em;
-    color: #1e3a8a;
     white-space: pre;
+    color: #1e3a8a;
 }
 
-/* Scrollbar subtle */
+/* Subtle scrollbar */
 ::-webkit-scrollbar {
     height: 6px;
 }
@@ -100,8 +112,12 @@ async function render() {
         section.appendChild(title);
 
         for (const file of cppFiles) {
-            const codeText = await fetchText(file.download_url);
+            const filename = document.createElement("div");
+            filename.className = "filename";
+            filename.textContent = file.name;
+            section.appendChild(filename);
 
+            const codeText = await fetchText(file.download_url);
             const pre = document.createElement("pre");
             const code = document.createElement("code");
             code.textContent = codeText;
