@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My CodeChef Solutions</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,133 +14,205 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: #fdfbf7;
-            color: #2c2c2c;
+            font-family: 'Indie Flower', cursive;
+            background: #ffffff;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 29px,
+                    #e3e3e3 29px,
+                    #e3e3e3 30px
+                );
+            color: #1e3a8a;
             padding: 40px 20px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
-        .container {
-            max-width: 900px;
+        .paper {
+            max-width: 800px;
             margin: 0 auto;
+            background: transparent;
+            padding: 40px 40px 40px 80px;
+            position: relative;
+        }
+
+        .paper::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 1.5px;
+            background: #ffc0cb;
         }
 
         h1 {
-            font-size: 2.5em;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.8em;
             font-weight: normal;
-            margin-bottom: 10px;
-            text-decoration: underline;
-            text-decoration-style: wavy;
-            text-decoration-color: #4a90e2;
+            margin-bottom: 8px;
+            color: #1e3a8a;
+            letter-spacing: 1px;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #666;
+            color: #1e3a8a;
             margin-bottom: 40px;
-            font-style: italic;
+            opacity: 0.8;
         }
 
         .contest {
             margin-bottom: 50px;
-            border-left: 3px solid #4a90e2;
-            padding-left: 20px;
         }
 
         .contest-title {
-            font-size: 1.6em;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.8em;
             margin-bottom: 15px;
-            color: #2c2c2c;
+            color: #1e3a8a;
+            text-decoration: underline;
+            text-underline-offset: 5px;
         }
 
         .note {
-            background: #fff9e6;
-            padding: 15px;
             margin: 15px 0;
-            border-left: 4px solid #ffd700;
+            padding: 12px 0;
             font-size: 0.95em;
+            line-height: 1.6;
+            color: #1e3a8a;
+            opacity: 0.9;
+            border-left: 2px solid #1e3a8a;
+            padding-left: 15px;
         }
 
-        .files {
-            margin-top: 20px;
+        .problem-card {
+            margin: 30px 0;
+            padding-bottom: 20px;
         }
 
-        .file-item {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            transition: all 0.2s;
-            cursor: pointer;
+        .problem-name {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.4em;
+            color: #1e3a8a;
+            margin-bottom: 12px;
         }
 
-        .file-item:hover {
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-            transform: translateX(5px);
+        .code-container {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #cbd5e1;
+            margin: 15px 0;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
-        .file-name {
-            font-size: 1.1em;
-            color: #4a90e2;
-            margin-bottom: 8px;
+        .code-header {
+            padding: 8px 12px;
+            border-bottom: 1px solid #cbd5e1;
+            font-size: 0.85em;
+            color: #64748b;
         }
 
-        .file-link {
-            color: #4a90e2;
-            text-decoration: none;
+        .code-content {
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8em;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            color: #334155;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
             font-size: 0.9em;
+            margin-top: 8px;
+            color: #1e3a8a;
+            opacity: 0.7;
         }
 
-        .file-link:hover {
-            text-decoration: underline;
+        .expand-btn {
+            background: none;
+            color: #1e3a8a;
+            border: 1px solid #1e3a8a;
+            padding: 6px 16px;
+            margin: 8px 0;
+            cursor: pointer;
+            font-family: 'Indie Flower', cursive;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+
+        .expand-btn:hover {
+            background: #1e3a8a;
+            color: white;
         }
 
         .loading {
-            text-align: center;
             padding: 40px;
             font-size: 1.2em;
-            color: #666;
+            color: #1e3a8a;
         }
 
         .error {
-            background: #ffe6e6;
             padding: 20px;
-            border-left: 4px solid #ff4444;
+            border-left: 3px solid #1e3a8a;
             margin: 20px 0;
+            color: #1e3a8a;
         }
 
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.9em;
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
 
-        .meta {
-            font-size: 0.85em;
-            color: #888;
-            margin-top: 5px;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
 
-        .doodle {
-            position: fixed;
-            font-size: 3em;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: -1;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        .collapsed {
+            max-height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
+        }
+
+        .divider {
+            margin: 30px 0;
+            height: 1px;
+            background: #cbd5e1;
         }
     </style>
 </head>
 <body>
-    <div class="doodle" style="top: 10%; right: 10%;">✨</div>
-    <div class="doodle" style="bottom: 15%; left: 8%;">🖊️</div>
-    <div class="doodle" style="top: 60%; right: 15%;">📝</div>
-
-    <div class="container">
+    <div class="paper">
         <h1>my codechef journey</h1>
-        <p class="subtitle">~ a collection of solved problems ~</p>
+        <p class="subtitle">learning to code, one problem at a time</p>
 
         <div id="content">
             <div class="loading">loading solutions from github...</div>
@@ -156,13 +230,12 @@
                 if (!response.ok) throw new Error('Failed to fetch repository');
                 const contents = await response.json();
                 
-                // Filter for STARTERS folders
                 const starterFolders = contents.filter(item => 
                     item.type === 'dir' && item.name.startsWith('STARTERS')
                 ).sort((a, b) => {
                     const numA = parseInt(a.name.match(/\d+/)[0]);
                     const numB = parseInt(b.name.match(/\d+/)[0]);
-                    return numB - numA; // Sort descending
+                    return numB - numA;
                 });
 
                 return starterFolders;
@@ -178,18 +251,36 @@
                 if (!response.ok) throw new Error('Failed to fetch contest files');
                 const contents = await response.json();
                 
-                // Get cpp files and README
                 const cppFiles = contents.filter(item => item.name.endsWith('.cpp'));
                 const readme = contents.find(item => item.name.toLowerCase().includes('starter') && item.name.endsWith('.md'));
+                const imageFolder = contents.find(item => item.type === 'dir' && item.name === 'image');
                 
-                return { cppFiles, readme };
+                return { cppFiles, readme, imageFolder };
             } catch (error) {
                 console.error('Error fetching contest files:', error);
-                return { cppFiles: [], readme: null };
+                return { cppFiles: [], readme: null, imageFolder: null };
             }
         }
 
-        async function fetchReadmeContent(file) {
+        async function fetchImages(imageFolderPath) {
+            if (!imageFolderPath) return [];
+            try {
+                const response = await fetch(`${API_BASE}/contents/${imageFolderPath}`);
+                if (!response.ok) return [];
+                const contents = await response.json();
+                return contents.filter(item => 
+                    item.name.endsWith('.png') || 
+                    item.name.endsWith('.jpg') || 
+                    item.name.endsWith('.jpeg') ||
+                    item.name.endsWith('.gif')
+                );
+            } catch (error) {
+                console.error('Error fetching images:', error);
+                return [];
+            }
+        }
+
+        async function fetchFileContent(file) {
             if (!file) return null;
             try {
                 const response = await fetch(file.download_url);
@@ -203,19 +294,49 @@
         function extractNotes(readmeContent) {
             if (!readmeContent) return null;
             
-            // Try to extract meaningful notes from the README
             const lines = readmeContent.split('\n');
             const notes = [];
             
             for (let line of lines) {
                 line = line.trim();
-                if (line && !line.startsWith('#') && !line.startsWith('[') && line.length > 20) {
+                if (line && !line.startsWith('#') && !line.startsWith('[') && !line.startsWith('```') && line.length > 15) {
                     notes.push(line);
-                    if (notes.length >= 3) break; // Get first 3 meaningful lines
+                    if (notes.length >= 3) break;
                 }
             }
             
             return notes.join(' ');
+        }
+
+        function createCodeBlock(filename, code, isCollapsed = true) {
+            const id = 'code-' + Math.random().toString(36).substr(2, 9);
+            return `
+                <div class="code-container ${isCollapsed ? 'collapsed' : ''}" id="${id}">
+                    <div class="code-header">${filename}</div>
+                    <div class="code-content">${escapeHtml(code)}</div>
+                </div>
+                ${isCollapsed ? `<button class="expand-btn" onclick="toggleCode('${id}', this)">show full code</button>` : ''}
+            `;
+        }
+
+        function toggleCode(id, btn) {
+            const codeBlock = document.getElementById(id);
+            const isCollapsed = codeBlock.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                codeBlock.classList.remove('collapsed');
+                btn.textContent = 'hide code';
+            } else {
+                codeBlock.classList.add('collapsed');
+                btn.textContent = 'show full code';
+                codeBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         async function renderContests() {
@@ -232,34 +353,45 @@
                 let html = '';
 
                 for (const folder of folders) {
-                    const { cppFiles, readme } = await fetchContestFiles(folder.path);
-                    const readmeContent = readme ? await fetchReadmeContent(readme) : null;
+                    const { cppFiles, readme, imageFolder } = await fetchContestFiles(folder.path);
+                    const readmeContent = readme ? await fetchFileContent(readme) : null;
                     const notes = extractNotes(readmeContent);
+                    const images = imageFolder ? await fetchImages(imageFolder.path) : [];
 
-                    html += `
-                        <div class="contest">
-                            <div class="contest-title">${folder.name.replace('_', ' ')}</div>
-                            
-                            ${notes ? `<div class="note">${notes}</div>` : ''}
-                            
-                            <div class="files">
-                                ${cppFiles.length > 0 ? 
-                                    cppFiles.map(file => `
-                                        <div class="file-item" onclick="window.open('${file.html_url}', '_blank')">
-                                            <div class="file-name">${file.name}</div>
-                                            <a href="${file.html_url}" target="_blank" class="file-link" onclick="event.stopPropagation()">
-                                                view solution →
-                                            </a>
-                                            <div class="meta">
-                                                <code>${file.name.replace('.cpp', '')}</code>
-                                            </div>
-                                        </div>
-                                    `).join('') 
-                                    : '<p style="color: #888;">No C++ solutions found</p>'
-                                }
-                            </div>
-                        </div>
-                    `;
+                    html += `<div class="contest">`;
+                    html += `<div class="contest-title">${folder.name.replace(/_/g, ' ')}</div>`;
+                    
+                    if (notes) {
+                        html += `<div class="note">${notes}</div>`;
+                    }
+
+                    if (images.length > 0) {
+                        for (const image of images) {
+                            html += `
+                                <div class="image-container">
+                                    <img src="${image.download_url}" alt="${image.name}" loading="lazy">
+                                    <div class="image-caption">${image.name}</div>
+                                </div>
+                            `;
+                        }
+                    }
+
+                    if (cppFiles.length > 0) {
+                        for (const file of cppFiles) {
+                            const code = await fetchFileContent(file);
+                            html += `
+                                <div class="problem-card">
+                                    <div class="problem-name">${file.name.replace('.cpp', '')}</div>
+                                    ${code ? createCodeBlock(file.name, code, true) : '<p style="color: #64748b;">Code not available</p>'}
+                                </div>
+                            `;
+                        }
+                    } else {
+                        html += '<p style="color: #64748b; margin: 20px 0;">No C++ solutions found</p>';
+                    }
+
+                    html += `<div class="divider"></div>`;
+                    html += `</div>`;
                 }
 
                 contentDiv.innerHTML = html;
@@ -267,15 +399,15 @@
             } catch (error) {
                 contentDiv.innerHTML = `
                     <div class="error">
-                        <strong>Oops! Something went wrong.</strong><br>
+                        <strong>Something went wrong.</strong><br>
                         ${error.message}<br><br>
-                        Make sure the repository <code>${GITHUB_USER}/${REPO_NAME}</code> exists and is public.
+                        Make sure the repository ${GITHUB_USER}/${REPO_NAME} exists and is public.
                     </div>
                 `;
             }
         }
 
-        // Load contests when page loads
+        window.toggleCode = toggleCode;
         renderContests();
     </script>
 </body>
