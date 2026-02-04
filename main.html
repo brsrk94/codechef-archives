@@ -1,492 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0x4D - CodeChef Archives</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>0x4D - CodeChef Archive</title>
 
-        body {
-            font-family: 'Courier New', monospace;
-            background: #f5f5f5;
-            color: #000;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+body {
+    font-family: "Courier New", monospace;
+    background: #f5f5f5;
+    color: #000;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
 
-        h1 {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 10px;
-            color: #000;
-            text-transform: uppercase;
-            border: 6px solid #000;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 8px 8px 0 #000;
-        }
+.container {
+    max-width: 950px;
+    margin: auto;
+}
 
-        .subtitle {
-            font-size: 1.1em;
-            margin-bottom: 50px;
-            padding: 15px;
-            border: 3px solid #000;
-            background: #fff;
-            box-shadow: 6px 6px 0 #000;
-            margin-top: 20px;
-        }
+h1 {
+    font-size: 3em;
+    font-weight: 900;
+    border: 6px solid #000;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 8px 8px 0 #000;
+}
 
-        .contest {
-            margin-bottom: 60px;
-            border: 4px solid #000;
-            background: #fff;
-            padding: 30px;
-            box-shadow: 8px 8px 0 #000;
-        }
+.subtitle {
+    margin-top: 20px;
+    padding: 15px;
+    border: 3px solid #000;
+    background: #fff;
+    box-shadow: 6px 6px 0 #000;
+    font-weight: 700;
+}
 
-        .contest-title {
-            font-size: 2em;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: #000;
-            text-transform: uppercase;
-            border-bottom: 4px solid #000;
-            padding-bottom: 10px;
-        }
+.contest {
+    margin-top: 60px;
+    padding: 30px;
+    border: 4px solid #000;
+    background: #fff;
+    box-shadow: 8px 8px 0 #000;
+}
 
-        .readme-note {
-            margin: 20px 0;
-            padding: 20px;
-            background: #ffeb3b;
-            border: 4px solid #000;
-            box-shadow: 4px 4px 0 #000;
-            font-weight: 500;
-            white-space: pre-wrap;
-            line-height: 1.8;
-        }
+.contest-title {
+    font-size: 2em;
+    font-weight: 900;
+    border-bottom: 4px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
 
-        .readme-note strong {
-            font-weight: 900;
-        }
+.readme-note {
+    background: #ffeb3b;
+    border: 4px solid #000;
+    padding: 20px;
+    box-shadow: 4px 4px 0 #000;
+    margin-bottom: 25px;
+}
 
-        .readme-section {
-            margin: 15px 0;
-        }
+.problem-card {
+    border: 3px solid #000;
+    padding: 20px;
+    box-shadow: 6px 6px 0 #000;
+    margin-bottom: 40px;
+}
 
-        .readme-section-title {
-            font-weight: 900;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
+.problem-name {
+    font-size: 1.4em;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
 
-        .problem-card {
-            margin: 30px 0;
-            border: 3px solid #000;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 6px 6px 0 #000;
-        }
+.code-container {
+    background: #f8f8f8;
+    border: 3px solid #000;
+    margin-top: 15px;
+    overflow: hidden;
+}
 
-        .problem-name {
-            font-size: 1.5em;
-            font-weight: 900;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
+.code-header {
+    padding: 10px 15px;
+    background: #fff;
+    border-bottom: 3px solid #000;
+    font-weight: 900;
+}
 
-        .code-container {
-            background: #282c34;
-            border: 3px solid #000;
-            margin: 15px 0;
-            max-height: 400px;
-            overflow-y: auto;
-        }
+.code-content {
+    padding: 16px;
+    font-size: 0.9em;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+    color: #1f2937;
+}
 
-        .code-header {
-            padding: 10px 15px;
-            background: #1e2127;
-            color: #abb2bf;
-            border-bottom: 2px solid #000;
-            font-weight: bold;
-        }
+/* Syntax highlighting */
+.kw { color: #7c3aed; font-weight: 600; }
+.type { color: #2563eb; }
+.str { color: #15803d; }
+.com { color: #6b7280; font-style: italic; }
+.num { color: #b45309; }
+.fn  { color: #0f766e; }
+.pp  { color: #9333ea; }
 
-        .code-content {
-            padding: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85em;
-            line-height: 1.6;
-            white-space: pre;
-            overflow-x: auto;
-            color: #abb2bf;
-        }
+.expand-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: 3px solid #000;
+    background: #fff;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #000;
+}
 
-        /* Syntax highlighting */
-        .code-content .keyword { color: #c678dd; }
-        .code-content .string { color: #98c379; }
-        .code-content .comment { color: #5c6370; font-style: italic; }
-        .code-content .number { color: #d19a66; }
-        .code-content .function { color: #61afef; }
-        .code-content .operator { color: #56b6c2; }
-        .code-content .type { color: #e5c07b; }
-        .code-content .preprocessor { color: #c678dd; }
+.expand-btn:hover {
+    background: #000;
+    color: #fff;
+}
 
-        .image-container {
-            margin: 25px 0;
-            border: 4px solid #000;
-            background: #fff;
-            padding: 0;
-            box-shadow: 6px 6px 0 #000;
-        }
+.collapsed {
+    max-height: 220px;
+    overflow: hidden;
+    position: relative;
+}
 
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 3px solid #000;
-        }
+.collapsed::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, #f8f8f8);
+}
 
-        .image-caption {
-            padding: 10px;
-            font-weight: bold;
-            background: #fff;
-        }
+.image-container {
+    margin: 20px 0;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
+}
 
-        .expand-btn {
-            background: #fff;
-            color: #000;
-            border: 3px solid #000;
-            padding: 10px 25px;
-            margin: 15px 0;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            font-weight: 900;
-            text-transform: uppercase;
-            box-shadow: 4px 4px 0 #000;
-            transition: all 0.1s;
-        }
+.image-container img {
+    max-width: 100%;
+    display: block;
+}
 
-        .expand-btn:hover {
-            background: #000;
-            color: #fff;
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0 #000;
-        }
+.divider {
+    height: 4px;
+    background: #000;
+    margin-top: 40px;
+}
 
-        .expand-btn:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0 0 0 #000;
-        }
-
-        .loading {
-            padding: 60px;
-            font-size: 1.5em;
-            text-align: center;
-            font-weight: 900;
-            border: 4px solid #000;
-            background: #fff;
-            box-shadow: 8px 8px 0 #000;
-        }
-
-        .error {
-            padding: 30px;
-            border: 4px solid #000;
-            background: #ff6b6b;
-            color: #000;
-            font-weight: bold;
-            box-shadow: 8px 8px 0 #000;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1e2127;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #3e4451;
-            border: 2px solid #1e2127;
-        }
-
-        .collapsed {
-            max-height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .collapsed::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(transparent, #282c34);
-        }
-
-        .divider {
-            margin: 40px 0;
-            height: 4px;
-            background: #000;
-        }
-    </style>
+.loading {
+    font-size: 1.5em;
+    font-weight: 900;
+    border: 4px solid #000;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 8px 8px 0 #000;
+    text-align: center;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>CODECHEF</h1>
-        <div class="subtitle">COMPETITIVE PROGRAMMING ARCHIVE</div>
+<div class="container">
+    <h1>CODECHEF</h1>
+    <div class="subtitle">COMPETITIVE PROGRAMMING ARCHIVE</div>
 
-        <div id="content">
-            <div class="loading">LOADING...</div>
-        </div>
+    <div id="content">
+        <div class="loading">LOADING…</div>
     </div>
+</div>
 
-    <script>
-        const GITHUB_USER = 'brsrk94';
-        const REPO_NAME = 'codechef-archives';
-        const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}`;
+<script>
+const USER = "brsrk94";
+const REPO = "codechef-archives";
+const API = `https://api.github.com/repos/${USER}/${REPO}`;
 
-        async function fetchRepoContents() {
-            try {
-                const response = await fetch(`${API_BASE}/contents`);
-                if (!response.ok) throw new Error('Failed to fetch repository');
-                const contents = await response.json();
-                
-                const starterFolders = contents.filter(item => 
-                    item.type === 'dir' && item.name.startsWith('STARTERS')
-                ).sort((a, b) => {
-                    const numA = parseInt(a.name.match(/\d+/)[0]);
-                    const numB = parseInt(b.name.match(/\d+/)[0]);
-                    return numB - numA;
-                });
+function escapeHtml(text) {
+    const d = document.createElement("div");
+    d.textContent = text;
+    return d.innerHTML;
+}
 
-                return starterFolders;
-            } catch (error) {
-                console.error('Error fetching repo:', error);
-                throw error;
-            }
+function highlightCppCode(raw) {
+    let code = escapeHtml(raw);
+
+    code = code.replace(/(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm, '<span class="com">$1</span>');
+    code = code.replace(/("([^"\\]|\\.)*")/g, '<span class="str">$1</span>');
+    code = code.replace(/^#.*$/gm, '<span class="pp">$&</span>');
+
+    code = code.replace(/\b(int|void|char|bool|long|short|float|double|if|else|for|while|return|break|continue|const|static|true|false|nullptr|auto)\b/g,
+        '<span class="kw">$1</span>');
+
+    code = code.replace(/\b(vector|map|set|unordered_map|unordered_set|string|pair|queue|stack|deque|priority_queue)\b/g,
+        '<span class="type">$1</span>');
+
+    code = code.replace(/\b\d+\b/g, '<span class="num">$&</span>');
+    code = code.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g, '<span class="fn">$1</span>');
+
+    return code;
+}
+
+function parseReadme(text) {
+    if (!text) return "";
+    return text
+        .replace(/^>\s*(.+)$/gm, '<div style="border-left:4px solid #000;padding-left:12px;margin:10px 0;font-weight:600;">$1</div>')
+        .replace(/\n{2,}/g, "<br><br>");
+}
+
+async function fetchJSON(url) {
+    const r = await fetch(url);
+    return r.ok ? r.json() : [];
+}
+
+async function fetchText(url) {
+    const r = await fetch(url);
+    return r.ok ? r.text() : "";
+}
+
+async function render() {
+    const root = document.getElementById("content");
+    const dirs = (await fetchJSON(`${API}/contents`))
+        .filter(d => d.type === "dir" && d.name.startsWith("STARTERS"))
+        .sort((a,b) => b.name.localeCompare(a.name));
+
+    let html = "";
+
+    for (const dir of dirs) {
+        const files = await fetchJSON(`${API}/contents/${dir.path}`);
+        const cpp = files.filter(f => f.name.endsWith(".cpp"));
+        const readme = files.find(f => f.name.toLowerCase() === "starters.md");
+        const imagesDir = files.find(f => f.type === "dir" && f.name === "image");
+
+        html += `<div class="contest">
+            <div class="contest-title">${dir.name}</div>`;
+
+        if (readme) {
+            const text = await fetchText(readme.download_url);
+            html += `<div class="readme-note">${parseReadme(text)}</div>`;
         }
 
-        async function fetchContestFiles(folderPath) {
-            try {
-                const response = await fetch(`${API_BASE}/contents/${folderPath}`);
-                if (!response.ok) throw new Error('Failed to fetch contest files');
-                const contents = await response.json();
-                
-                const cppFiles = contents.filter(item => item.name.endsWith('.cpp'));
-                const readme = contents.find(item => item.name.toLowerCase() === 'starters.md');
-                const imageFolder = contents.find(item => item.type === 'dir' && item.name === 'image');
-                
-                return { cppFiles, readme, imageFolder };
-            } catch (error) {
-                console.error('Error fetching contest files:', error);
-                return { cppFiles: [], readme: null, imageFolder: null };
-            }
+        if (imagesDir) {
+            const imgs = await fetchJSON(`${API}/contents/${imagesDir.path}`);
+            imgs.filter(i => i.type === "file").forEach(i => {
+                html += `<div class="image-container"><img src="${i.download_url}"></div>`;
+            });
         }
 
-        async function fetchImages(imageFolderPath) {
-            if (!imageFolderPath) return [];
-            try {
-                const response = await fetch(`${API_BASE}/contents/${imageFolderPath}`);
-                if (!response.ok) return [];
-                const contents = await response.json();
-                
-                let allImages = contents.filter(item => 
-                    item.type === 'file' && (
-                        item.name.endsWith('.png') || 
-                        item.name.endsWith('.jpg') || 
-                        item.name.endsWith('.jpeg') ||
-                        item.name.endsWith('.gif')
-                    )
-                );
-                
-                if (allImages.length === 0) {
-                    const subDirs = contents.filter(item => item.type === 'dir');
-                    for (const dir of subDirs) {
-                        const subResponse = await fetch(`${API_BASE}/contents/${dir.path}`);
-                        if (subResponse.ok) {
-                            const subContents = await subResponse.json();
-                            const subImages = subContents.filter(item =>
-                                item.type === 'file' && (
-                                    item.name.endsWith('.png') || 
-                                    item.name.endsWith('.jpg') || 
-                                    item.name.endsWith('.jpeg') ||
-                                    item.name.endsWith('.gif')
-                                )
-                            );
-                            allImages = allImages.concat(subImages);
-                        }
-                    }
-                }
-                
-                return allImages;
-            } catch (error) {
-                console.error('Error fetching images:', error);
-                return [];
-            }
-        }
-
-        async function fetchFileContent(file) {
-            if (!file) return null;
-            try {
-                const response = await fetch(file.download_url);
-                if (!response.ok) return null;
-                return await response.text();
-            } catch (error) {
-                return null;
-            }
-        }
-
-        function parseReadmeContent(readmeContent) {
-            if (!readmeContent) return null;
-            
-            // Parse markdown-style content
-            let parsed = readmeContent
-                .replace(/^#+\s+(.+)$/gm, '<div class="readme-section-title">$1</div>')
-                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '<strong>$1</strong>')
-                .replace(/```[\s\S]*?```/g, '')
-                .replace(/`([^`]+)`/g, '<strong>$1</strong>')
-                .replace(/^>\s*(.+)$/gm, '<div class="readme-section">→ $1</div>')
-                .trim();
-            
-            return parsed;
-        }
-
-        function highlightCppCode(code) {
-            // Basic C++ syntax highlighting
-            const keywords = /\b(int|void|char|bool|long|short|float|double|class|struct|if|else|for|while|do|switch|case|break|continue|return|sizeof|typedef|const|static|public|private|protected|virtual|namespace|using|template|typename|auto|nullptr|new|delete|try|catch|throw|true|false|cout|cin|endl)\b/g;
-            const strings = /("([^"\\]|\\.)*")/g;
-            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
-            const numbers = /\b(\d+)\b/g;
-            const preprocessor = /^#\s*(include|define|ifdef|ifndef|endif|pragma)\b/gm;
-            const functions = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g;
-            
-            let highlighted = code;
-            
-            // Order matters - do comments first to avoid highlighting inside them
-            highlighted = highlighted.replace(comments, '<span class="comment">$1</span>');
-            highlighted = highlighted.replace(strings, '<span class="string">$1</span>');
-            highlighted = highlighted.replace(preprocessor, '<span class="preprocessor">#$1</span>');
-            highlighted = highlighted.replace(keywords, '<span class="keyword">$1</span>');
-            highlighted = highlighted.replace(numbers, '<span class="number">$1</span>');
-            
-            return highlighted;
-        }
-
-        function createCodeBlock(filename, code, isCollapsed = true) {
-            const id = 'code-' + Math.random().toString(36).substr(2, 9);
-            const highlighted = highlightCppCode(escapeHtml(code));
-            
-            return `
-                <div class="code-container ${isCollapsed ? 'collapsed' : ''}" id="${id}">
-                    <div class="code-header">${filename}</div>
-                    <div class="code-content">${highlighted}</div>
+        for (const file of cpp) {
+            const code = await fetchText(file.download_url);
+            const id = Math.random().toString(36).slice(2);
+            html += `
+            <div class="problem-card">
+                <div class="problem-name">${file.name.replace(".cpp","")}</div>
+                <div id="${id}" class="code-container collapsed">
+                    <div class="code-header">${file.name}</div>
+                    <div class="code-content">${highlightCppCode(code)}</div>
                 </div>
-                ${isCollapsed ? `<button class="expand-btn" onclick="toggleCode('${id}', this)">EXPAND</button>` : ''}
-            `;
+                <button class="expand-btn" onclick="toggle('${id}',this)">EXPAND</button>
+            </div>`;
         }
 
-        function toggleCode(id, btn) {
-            const codeBlock = document.getElementById(id);
-            const isCollapsed = codeBlock.classList.contains('collapsed');
-            
-            if (isCollapsed) {
-                codeBlock.classList.remove('collapsed');
-                btn.textContent = 'COLLAPSE';
-            } else {
-                codeBlock.classList.add('collapsed');
-                btn.textContent = 'EXPAND';
-                codeBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        }
+        html += `<div class="divider"></div></div>`;
+    }
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+    root.innerHTML = html;
+}
 
-        async function renderContests() {
-            const contentDiv = document.getElementById('content');
-            
-            try {
-                const folders = await fetchRepoContents();
-                
-                if (folders.length === 0) {
-                    contentDiv.innerHTML = '<div class="error">NO CONTESTS FOUND</div>';
-                    return;
-                }
+function toggle(id, btn) {
+    const el = document.getElementById(id);
+    el.classList.toggle("collapsed");
+    btn.textContent = el.classList.contains("collapsed") ? "EXPAND" : "COLLAPSE";
+}
 
-                let html = '';
-
-                for (const folder of folders) {
-                    const { cppFiles, readme, imageFolder } = await fetchContestFiles(folder.path);
-                    const readmeContent = readme ? await fetchFileContent(readme) : null;
-                    const parsedReadme = parseReadmeContent(readmeContent);
-                    const images = imageFolder ? await fetchImages(imageFolder.path) : [];
-
-                    html += `<div class="contest">`;
-                    html += `<div class="contest-title">${folder.name.replace(/_/g, ' ')}</div>`;
-                    
-                    if (parsedReadme) {
-                        html += `<div class="readme-note">${parsedReadme}</div>`;
-                    }
-
-                    if (images.length > 0) {
-                        for (const image of images) {
-                            html += `
-                                <div class="image-container">
-                                    <img src="${image.download_url}" alt="${image.name}" loading="lazy">
-                                    <div class="image-caption">${image.name}</div>
-                                </div>
-                            `;
-                        }
-                    }
-
-                    if (cppFiles.length > 0) {
-                        for (const file of cppFiles) {
-                            const code = await fetchFileContent(file);
-                            html += `
-                                <div class="problem-card">
-                                    <div class="problem-name">${file.name.replace('.cpp', '')}</div>
-                                    ${code ? createCodeBlock(file.name, code, true) : '<p>CODE NOT AVAILABLE</p>'}
-                                </div>
-                            `;
-                        }
-                    } else {
-                        html += '<p style="margin: 20px 0; font-weight: bold;">NO SOLUTIONS</p>';
-                    }
-
-                    html += `<div class="divider"></div>`;
-                    html += `</div>`;
-                }
-
-                contentDiv.innerHTML = html;
-
-            } catch (error) {
-                contentDiv.innerHTML = `
-                    <div class="error">
-                        ERROR: ${error.message}
-                    </div>
-                `;
-            }
-        }
-
-        window.toggleCode = toggleCode;
-        renderContests();
-    </script>
+render();
+</script>
 </body>
 </html>
