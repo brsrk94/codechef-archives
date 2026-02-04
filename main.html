@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0x4D-</title>
+    <title>0x4D</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand&family=Shadows+Into+Light&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -14,233 +12,187 @@
         }
 
         body {
-            font-family: 'Indie Flower', cursive;
-            background: linear-gradient(135deg, #f5f5dc 0%, #e8e4d8 100%);
-            color: #1e3a8a;
-            padding: 60px 20px;
-            line-height: 2;
-            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            color: #000;
+            padding: 40px 20px;
+            line-height: 1.6;
         }
 
-        .paper {
-            max-width: 850px;
+        .container {
+            max-width: 900px;
             margin: 0 auto;
-            background: #fefefe;
-            background-image: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 31px,
-                    rgba(74, 144, 226, 0.08) 31px,
-                    rgba(74, 144, 226, 0.08) 32px
-                ),
-                linear-gradient(90deg, 
-                    rgba(255, 192, 203, 0.4) 0px,
-                    rgba(255, 192, 203, 0.4) 2px,
-                    transparent 2px,
-                    transparent 100%
-                );
-            background-position: 0 0, 65px 0;
-            background-size: 100% 32px, 100% 100%;
-            padding: 50px 40px 50px 90px;
-            box-shadow: 
-                0 2px 4px rgba(0,0,0,0.1),
-                0 8px 16px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.5);
-            position: relative;
-            transform: rotate(0.3deg);
-            border-radius: 2px;
-        }
-
-        .paper::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            pointer-events: none;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0,0,0,0.015) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(0,0,0,0.01) 0%, transparent 50%);
         }
 
         h1 {
-            font-family: 'Patrick Hand', cursive;
             font-size: 3em;
-            font-weight: normal;
+            font-weight: 900;
             margin-bottom: 10px;
-            color: #1e3a8a;
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 0px rgba(30, 58, 138, 0.1);
-            position: relative;
+            color: #000;
+            text-transform: uppercase;
+            border: 6px solid #000;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 8px 8px 0 #000;
         }
 
         .subtitle {
-            font-size: 1.15em;
-            color: #4a6fa5;
+            font-size: 1.1em;
             margin-bottom: 50px;
-            letter-spacing: 0.5px;
+            padding: 15px;
+            border: 3px solid #000;
+            background: #fff;
+            box-shadow: 6px 6px 0 #000;
+            margin-top: 20px;
         }
 
         .contest {
             margin-bottom: 60px;
-            position: relative;
+            border: 4px solid #000;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 8px 8px 0 #000;
         }
 
         .contest-title {
-            font-family: 'Patrick Hand', cursive;
             font-size: 2em;
+            font-weight: 900;
             margin-bottom: 20px;
-            color: #1e3a8a;
-            text-decoration: underline;
-            text-underline-offset: 6px;
-            text-decoration-thickness: 2px;
-            letter-spacing: 1px;
+            color: #000;
+            text-transform: uppercase;
+            border-bottom: 4px solid #000;
+            padding-bottom: 10px;
         }
 
         .readme-note {
             margin: 20px 0;
-            padding: 15px;
-            padding-left: 20px;
-            font-size: 1em;
-            line-height: 1.9;
-            color: #1e3a8a;
-            border-left: 3px solid #4a90e2;
-            background: rgba(74, 144, 226, 0.03);
-            position: relative;
-        }
-
-        .readme-note::before {
-            content: '※';
-            position: absolute;
-            left: -12px;
-            top: 10px;
-            color: #4a90e2;
-            font-size: 1.5em;
-            background: #fefefe;
-            padding: 0 5px;
+            padding: 20px;
+            background: #ffeb3b;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0 #000;
+            font-weight: bold;
         }
 
         .problem-card {
-            margin: 35px 0;
-            padding: 20px 0;
-            border-bottom: 1px dashed rgba(30, 58, 138, 0.2);
+            margin: 30px 0;
+            border: 3px solid #000;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 6px 6px 0 #000;
         }
 
         .problem-name {
-            font-family: 'Shadows Into Light', cursive;
             font-size: 1.5em;
-            color: #1e3a8a;
+            font-weight: 900;
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .code-container {
-            background: rgba(248, 250, 252, 0.6);
-            border: 1px solid rgba(203, 213, 225, 0.5);
-            border-radius: 3px;
-            margin: 18px 0;
-            max-height: 450px;
+            background: #000;
+            color: #0f0;
+            border: 3px solid #000;
+            margin: 15px 0;
+            max-height: 400px;
             overflow-y: auto;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .code-header {
             padding: 10px 15px;
-            border-bottom: 1px solid rgba(203, 213, 225, 0.5);
-            font-size: 0.82em;
-            color: #64748b;
-            background: rgba(241, 245, 249, 0.5);
-            letter-spacing: 0.3px;
+            background: #000;
+            color: #fff;
+            border-bottom: 2px solid #0f0;
+            font-weight: bold;
         }
 
         .code-content {
             padding: 15px;
             font-family: 'Courier New', monospace;
-            font-size: 0.82em;
-            line-height: 1.6;
+            font-size: 0.85em;
+            line-height: 1.5;
             white-space: pre;
             overflow-x: auto;
-            color: #1e293b;
         }
 
         .image-container {
             margin: 25px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(203, 213, 225, 0.6);
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+            border: 4px solid #000;
+            background: #fff;
+            padding: 0;
+            box-shadow: 6px 6px 0 #000;
         }
 
         .image-container img {
             max-width: 100%;
             height: auto;
             display: block;
-            border: 1px solid rgba(203, 213, 225, 0.4);
+            border-bottom: 3px solid #000;
         }
 
         .image-caption {
-            font-size: 0.88em;
-            margin-top: 10px;
-            color: #4a6fa5;
-            text-align: center;
-            letter-spacing: 0.5px;
+            padding: 10px;
+            font-weight: bold;
+            background: #fff;
         }
 
         .expand-btn {
-            background: #fefefe;
-            color: #1e3a8a;
-            border: 1.5px solid #1e3a8a;
-            padding: 7px 18px;
-            margin: 10px 0;
+            background: #fff;
+            color: #000;
+            border: 3px solid #000;
+            padding: 10px 25px;
+            margin: 15px 0;
             cursor: pointer;
-            font-family: 'Indie Flower', cursive;
-            font-size: 0.92em;
-            transition: all 0.2s;
-            letter-spacing: 0.5px;
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 #000;
+            transition: all 0.1s;
         }
 
         .expand-btn:hover {
-            background: #1e3a8a;
-            color: white;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+            background: #000;
+            color: #fff;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        .expand-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 #000;
         }
 
         .loading {
-            padding: 50px;
-            font-size: 1.3em;
-            color: #4a6fa5;
+            padding: 60px;
+            font-size: 1.5em;
             text-align: center;
-            letter-spacing: 1px;
+            font-weight: 900;
+            border: 4px solid #000;
+            background: #fff;
+            box-shadow: 8px 8px 0 #000;
         }
 
         .error {
-            padding: 25px;
-            border-left: 3px solid #dc2626;
-            margin: 20px 0;
-            color: #dc2626;
-            background: rgba(220, 38, 38, 0.05);
+            padding: 30px;
+            border: 4px solid #000;
+            background: #ff6b6b;
+            color: #000;
+            font-weight: bold;
+            box-shadow: 8px 8px 0 #000;
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(241, 245, 249, 0.5);
+            background: #000;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(148, 163, 184, 0.5);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(100, 116, 139, 0.7);
+            background: #0f0;
+            border: 2px solid #000;
         }
 
         .collapsed {
@@ -255,46 +207,24 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 70px;
-            background: linear-gradient(transparent, rgba(248, 250, 252, 0.95));
-            pointer-events: none;
+            height: 60px;
+            background: linear-gradient(transparent, #000);
         }
 
         .divider {
-            margin: 45px 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(30, 58, 138, 0.2), transparent);
-        }
-
-        /* Ink bleed effect */
-        .ink-text {
-            text-shadow: 
-                0.5px 0.5px 0px rgba(30, 58, 138, 0.3),
-                -0.3px -0.3px 0px rgba(30, 58, 138, 0.2);
-        }
-
-        /* Paper texture overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            pointer-events: none;
-            background-image: url('data:image/svg+xml,%3Csvg width="200" height="200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" /%3E%3C/svg%3E');
-            z-index: -1;
+            margin: 40px 0;
+            height: 4px;
+            background: #000;
         }
     </style>
 </head>
 <body>
-    <div class="paper">
-        <h1 class="ink-text">my codechef journey</h1>
-        <p class="subtitle ink-text">learning to code, one problem at a time</p>
+    <div class="container">
+        <h1>CODECHEF</h1>
+        <div class="subtitle">COMPETITIVE PROGRAMMING ARCHIVE</div>
 
         <div id="content">
-            <div class="loading">loading solutions from github...</div>
+            <div class="loading">LOADING...</div>
         </div>
     </div>
 
@@ -348,7 +278,6 @@
                 if (!response.ok) return [];
                 const contents = await response.json();
                 
-                // Get all files first
                 let allImages = contents.filter(item => 
                     item.type === 'file' && (
                         item.name.endsWith('.png') || 
@@ -358,7 +287,6 @@
                     )
                 );
                 
-                // If no images in root, check subdirectories
                 if (allImages.length === 0) {
                     const subDirs = contents.filter(item => item.type === 'dir');
                     for (const dir of subDirs) {
@@ -399,12 +327,11 @@
         function parseReadmeContent(readmeContent) {
             if (!readmeContent) return null;
             
-            // Remove markdown headers and links, keep the actual content
             let cleaned = readmeContent
-                .replace(/^#+\s+/gm, '') // Remove markdown headers
-                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // Convert links to text
-                .replace(/```[\s\S]*?```/g, '') // Remove code blocks
-                .replace(/`([^`]+)`/g, '$1') // Remove inline code markers
+                .replace(/^#+\s+/gm, '')
+                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+                .replace(/```[\s\S]*?```/g, '')
+                .replace(/`([^`]+)`/g, '$1')
                 .trim();
             
             return cleaned;
@@ -417,7 +344,7 @@
                     <div class="code-header">${filename}</div>
                     <div class="code-content">${escapeHtml(code)}</div>
                 </div>
-                ${isCollapsed ? `<button class="expand-btn" onclick="toggleCode('${id}', this)">show full code</button>` : ''}
+                ${isCollapsed ? `<button class="expand-btn" onclick="toggleCode('${id}', this)">EXPAND</button>` : ''}
             `;
         }
 
@@ -427,10 +354,10 @@
             
             if (isCollapsed) {
                 codeBlock.classList.remove('collapsed');
-                btn.textContent = 'hide code';
+                btn.textContent = 'COLLAPSE';
             } else {
                 codeBlock.classList.add('collapsed');
-                btn.textContent = 'show full code';
+                btn.textContent = 'EXPAND';
                 codeBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
@@ -448,7 +375,7 @@
                 const folders = await fetchRepoContents();
                 
                 if (folders.length === 0) {
-                    contentDiv.innerHTML = '<div class="error">No contest folders found in the repository.</div>';
+                    contentDiv.innerHTML = '<div class="error">NO CONTESTS FOUND</div>';
                     return;
                 }
 
@@ -461,38 +388,35 @@
                     const images = imageFolder ? await fetchImages(imageFolder.path) : [];
 
                     html += `<div class="contest">`;
-                    html += `<div class="contest-title ink-text">${folder.name.replace(/_/g, ' ')}</div>`;
+                    html += `<div class="contest-title">${folder.name.replace(/_/g, ' ')}</div>`;
                     
-                    // Display README content if exists
                     if (parsedReadme) {
-                        html += `<div class="readme-note ink-text">${escapeHtml(parsedReadme)}</div>`;
+                        html += `<div class="readme-note">${escapeHtml(parsedReadme)}</div>`;
                     }
 
-                    // Display images
                     if (images.length > 0) {
                         for (const image of images) {
                             html += `
                                 <div class="image-container">
                                     <img src="${image.download_url}" alt="${image.name}" loading="lazy">
-                                    <div class="image-caption ink-text">${image.name}</div>
+                                    <div class="image-caption">${image.name}</div>
                                 </div>
                             `;
                         }
                     }
 
-                    // Display C++ files with code
                     if (cppFiles.length > 0) {
                         for (const file of cppFiles) {
                             const code = await fetchFileContent(file);
                             html += `
                                 <div class="problem-card">
-                                    <div class="problem-name ink-text">${file.name.replace('.cpp', '')}</div>
-                                    ${code ? createCodeBlock(file.name, code, true) : '<p style="color: #64748b;">Code not available</p>'}
+                                    <div class="problem-name">${file.name.replace('.cpp', '')}</div>
+                                    ${code ? createCodeBlock(file.name, code, true) : '<p>CODE NOT AVAILABLE</p>'}
                                 </div>
                             `;
                         }
                     } else {
-                        html += '<p style="color: #64748b; margin: 20px 0;">No C++ solutions found</p>';
+                        html += '<p style="margin: 20px 0; font-weight: bold;">NO SOLUTIONS</p>';
                     }
 
                     html += `<div class="divider"></div>`;
@@ -504,9 +428,7 @@
             } catch (error) {
                 contentDiv.innerHTML = `
                     <div class="error">
-                        <strong>Something went wrong.</strong><br>
-                        ${error.message}<br><br>
-                        Make sure the repository ${GITHUB_USER}/${REPO_NAME} exists and is public.
+                        ERROR: ${error.message}
                     </div>
                 `;
             }
