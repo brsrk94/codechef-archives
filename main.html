@@ -3,221 +3,71 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>0x4D - CodeChef Archive</title>
+<title>0x4D - CodeChef Archives</title>
+
+<!-- Handwritten font -->
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: "Courier New", monospace;
-    background: #f5f5f5;
-    color: #000;
+    font-family: "Patrick Hand", cursive;
+    background: #faf9f6;
+    color: #1e3a8a;
     padding: 40px 20px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .container {
-    max-width: 950px;
+    max-width: 900px;
     margin: auto;
 }
 
-h1 {
-    font-size: 3em;
-    font-weight: 900;
-    border: 6px solid #000;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 8px 8px 0 #000;
-}
-
-.subtitle {
-    margin-top: 20px;
-    padding: 15px;
-    border: 3px solid #000;
-    background: #fff;
-    box-shadow: 6px 6px 0 #000;
-    font-weight: 700;
-}
-
+/* Contest title */
 .contest {
-    margin-top: 60px;
-    padding: 30px;
-    border: 4px solid #000;
-    background: #fff;
-    box-shadow: 8px 8px 0 #000;
+    margin-bottom: 60px;
 }
 
 .contest-title {
-    font-size: 2em;
-    font-weight: 900;
-    border-bottom: 4px solid #000;
-    padding-bottom: 10px;
+    font-size: 2.2em;
     margin-bottom: 20px;
+    border-bottom: 2px solid #1e3a8a;
+    padding-bottom: 5px;
 }
 
-.readme-note {
-    background: #ffeb3b;
-    border: 4px solid #000;
-    padding: 20px;
-    box-shadow: 4px 4px 0 #000;
-    margin-bottom: 25px;
-}
-
-.problem-card {
-    border: 3px solid #000;
-    padding: 20px;
-    box-shadow: 6px 6px 0 #000;
-    margin-bottom: 40px;
-}
-
-.problem-name {
-    font-size: 1.4em;
-    font-weight: 900;
-    margin-bottom: 10px;
-}
-
-.code-container {
-    background: #f8f8f8;
-    border: 3px solid #000;
-    margin-top: 15px;
-    overflow: hidden;
-}
-
-.code-header {
-    padding: 10px 15px;
-    background: #fff;
-    border-bottom: 3px solid #000;
-    font-weight: 900;
-}
-
-.code-content {
-    padding: 16px;
-    font-size: 0.9em;
-    line-height: 1.7;
-    white-space: pre;
+/* Code */
+pre {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 30px;
     overflow-x: auto;
-    color: #1f2937;
 }
 
-/* Syntax highlighting */
-.kw { color: #7c3aed; font-weight: 600; }
-.type { color: #2563eb; }
-.str { color: #15803d; }
-.com { color: #6b7280; font-style: italic; }
-.num { color: #b45309; }
-.fn  { color: #0f766e; }
-.pp  { color: #9333ea; }
-
-.expand-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border: 3px solid #000;
-    background: #fff;
-    font-weight: 900;
-    cursor: pointer;
-    box-shadow: 4px 4px 0 #000;
+code {
+    font-family: "Courier New", monospace;
+    font-size: 0.95em;
+    color: #1e3a8a;
+    white-space: pre;
 }
 
-.expand-btn:hover {
-    background: #000;
-    color: #fff;
+/* Scrollbar subtle */
+::-webkit-scrollbar {
+    height: 6px;
 }
-
-.collapsed {
-    max-height: 220px;
-    overflow: hidden;
-    position: relative;
-}
-
-.collapsed::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(transparent, #f8f8f8);
-}
-
-.image-container {
-    margin: 20px 0;
-    border: 3px solid #000;
-    box-shadow: 4px 4px 0 #000;
-}
-
-.image-container img {
-    max-width: 100%;
-    display: block;
-}
-
-.divider {
-    height: 4px;
-    background: #000;
-    margin-top: 40px;
-}
-
-.loading {
-    font-size: 1.5em;
-    font-weight: 900;
-    border: 4px solid #000;
-    padding: 40px;
-    background: #fff;
-    box-shadow: 8px 8px 0 #000;
-    text-align: center;
+::-webkit-scrollbar-thumb {
+    background: #c7d2fe;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-    <h1>CODECHEF</h1>
-    <div class="subtitle">COMPETITIVE PROGRAMMING ARCHIVE</div>
-
-    <div id="content">
-        <div class="loading">LOADING…</div>
-    </div>
+<div class="container" id="content">
+    loading…
 </div>
 
 <script>
 const USER = "brsrk94";
 const REPO = "codechef-archives";
 const API = `https://api.github.com/repos/${USER}/${REPO}`;
-
-function escapeHtml(text) {
-    const d = document.createElement("div");
-    d.textContent = text;
-    return d.innerHTML;
-}
-
-function highlightCppCode(raw) {
-    let code = escapeHtml(raw);
-
-    code = code.replace(/(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm, '<span class="com">$1</span>');
-    code = code.replace(/("([^"\\]|\\.)*")/g, '<span class="str">$1</span>');
-    code = code.replace(/^#.*$/gm, '<span class="pp">$&</span>');
-
-    code = code.replace(/\b(int|void|char|bool|long|short|float|double|if|else|for|while|return|break|continue|const|static|true|false|nullptr|auto)\b/g,
-        '<span class="kw">$1</span>');
-
-    code = code.replace(/\b(vector|map|set|unordered_map|unordered_set|string|pair|queue|stack|deque|priority_queue)\b/g,
-        '<span class="type">$1</span>');
-
-    code = code.replace(/\b\d+\b/g, '<span class="num">$&</span>');
-    code = code.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g, '<span class="fn">$1</span>');
-
-    return code;
-}
-
-function parseReadme(text) {
-    if (!text) return "";
-    return text
-        .replace(/^>\s*(.+)$/gm, '<div style="border-left:4px solid #000;padding-left:12px;margin:10px 0;font-weight:600;">$1</div>')
-        .replace(/\n{2,}/g, "<br><br>");
-}
 
 async function fetchJSON(url) {
     const r = await fetch(url);
@@ -231,57 +81,37 @@ async function fetchText(url) {
 
 async function render() {
     const root = document.getElementById("content");
-    const dirs = (await fetchJSON(`${API}/contents`))
-        .filter(d => d.type === "dir" && d.name.startsWith("STARTERS"))
+    root.innerHTML = "";
+
+    const folders = (await fetchJSON(`${API}/contents`))
+        .filter(f => f.type === "dir" && f.name.startsWith("STARTERS"))
         .sort((a,b) => b.name.localeCompare(a.name));
 
-    let html = "";
+    for (const folder of folders) {
+        const files = await fetchJSON(`${API}/contents/${folder.path}`);
+        const cppFiles = files.filter(f => f.name.endsWith(".cpp"));
 
-    for (const dir of dirs) {
-        const files = await fetchJSON(`${API}/contents/${dir.path}`);
-        const cpp = files.filter(f => f.name.endsWith(".cpp"));
-        const readme = files.find(f => f.name.toLowerCase() === "starters.md");
-        const imagesDir = files.find(f => f.type === "dir" && f.name === "image");
+        const section = document.createElement("div");
+        section.className = "contest";
 
-        html += `<div class="contest">
-            <div class="contest-title">${dir.name}</div>`;
+        const title = document.createElement("div");
+        title.className = "contest-title";
+        title.textContent = folder.name;
+        section.appendChild(title);
 
-        if (readme) {
-            const text = await fetchText(readme.download_url);
-            html += `<div class="readme-note">${parseReadme(text)}</div>`;
+        for (const file of cppFiles) {
+            const codeText = await fetchText(file.download_url);
+
+            const pre = document.createElement("pre");
+            const code = document.createElement("code");
+            code.textContent = codeText;
+
+            pre.appendChild(code);
+            section.appendChild(pre);
         }
 
-        if (imagesDir) {
-            const imgs = await fetchJSON(`${API}/contents/${imagesDir.path}`);
-            imgs.filter(i => i.type === "file").forEach(i => {
-                html += `<div class="image-container"><img src="${i.download_url}"></div>`;
-            });
-        }
-
-        for (const file of cpp) {
-            const code = await fetchText(file.download_url);
-            const id = Math.random().toString(36).slice(2);
-            html += `
-            <div class="problem-card">
-                <div class="problem-name">${file.name.replace(".cpp","")}</div>
-                <div id="${id}" class="code-container collapsed">
-                    <div class="code-header">${file.name}</div>
-                    <div class="code-content">${highlightCppCode(code)}</div>
-                </div>
-                <button class="expand-btn" onclick="toggle('${id}',this)">EXPAND</button>
-            </div>`;
-        }
-
-        html += `<div class="divider"></div></div>`;
+        root.appendChild(section);
     }
-
-    root.innerHTML = html;
-}
-
-function toggle(id, btn) {
-    const el = document.getElementById(id);
-    el.classList.toggle("collapsed");
-    btn.textContent = el.classList.contains("collapsed") ? "EXPAND" : "COLLAPSE";
 }
 
 render();
