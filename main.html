@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0x4D</title>
+    <title>0x4D - CodeChef Archives</title>
     <style>
         * {
             margin: 0;
@@ -68,9 +68,25 @@
             margin: 20px 0;
             padding: 20px;
             background: #ffeb3b;
-            border: 3px solid #000;
+            border: 4px solid #000;
             box-shadow: 4px 4px 0 #000;
-            font-weight: bold;
+            font-weight: 500;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+
+        .readme-note strong {
+            font-weight: 900;
+        }
+
+        .readme-section {
+            margin: 15px 0;
+        }
+
+        .readme-section-title {
+            font-weight: 900;
+            margin-bottom: 8px;
+            font-size: 1.1em;
         }
 
         .problem-card {
@@ -89,8 +105,7 @@
         }
 
         .code-container {
-            background: #000;
-            color: #0f0;
+            background: #282c34;
             border: 3px solid #000;
             margin: 15px 0;
             max-height: 400px;
@@ -99,9 +114,9 @@
 
         .code-header {
             padding: 10px 15px;
-            background: #000;
-            color: #fff;
-            border-bottom: 2px solid #0f0;
+            background: #1e2127;
+            color: #abb2bf;
+            border-bottom: 2px solid #000;
             font-weight: bold;
         }
 
@@ -109,10 +124,21 @@
             padding: 15px;
             font-family: 'Courier New', monospace;
             font-size: 0.85em;
-            line-height: 1.5;
+            line-height: 1.6;
             white-space: pre;
             overflow-x: auto;
+            color: #abb2bf;
         }
+
+        /* Syntax highlighting */
+        .code-content .keyword { color: #c678dd; }
+        .code-content .string { color: #98c379; }
+        .code-content .comment { color: #5c6370; font-style: italic; }
+        .code-content .number { color: #d19a66; }
+        .code-content .function { color: #61afef; }
+        .code-content .operator { color: #56b6c2; }
+        .code-content .type { color: #e5c07b; }
+        .code-content .preprocessor { color: #c678dd; }
 
         .image-container {
             margin: 25px 0;
@@ -187,12 +213,12 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #000;
+            background: #1e2127;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #0f0;
-            border: 2px solid #000;
+            background: #3e4451;
+            border: 2px solid #1e2127;
         }
 
         .collapsed {
@@ -208,7 +234,7 @@
             left: 0;
             right: 0;
             height: 60px;
-            background: linear-gradient(transparent, #000);
+            background: linear-gradient(transparent, #282c34);
         }
 
         .divider {
@@ -327,22 +353,47 @@
         function parseReadmeContent(readmeContent) {
             if (!readmeContent) return null;
             
-            let cleaned = readmeContent
-                .replace(/^#+\s+/gm, '')
-                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+            // Parse markdown-style content
+            let parsed = readmeContent
+                .replace(/^#+\s+(.+)$/gm, '<div class="readme-section-title">$1</div>')
+                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '<strong>$1</strong>')
                 .replace(/```[\s\S]*?```/g, '')
-                .replace(/`([^`]+)`/g, '$1')
+                .replace(/`([^`]+)`/g, '<strong>$1</strong>')
+                .replace(/^>\s*(.+)$/gm, '<div class="readme-section">→ $1</div>')
                 .trim();
             
-            return cleaned;
+            return parsed;
+        }
+
+        function highlightCppCode(code) {
+            // Basic C++ syntax highlighting
+            const keywords = /\b(int|void|char|bool|long|short|float|double|class|struct|if|else|for|while|do|switch|case|break|continue|return|sizeof|typedef|const|static|public|private|protected|virtual|namespace|using|template|typename|auto|nullptr|new|delete|try|catch|throw|true|false|cout|cin|endl)\b/g;
+            const strings = /("([^"\\]|\\.)*")/g;
+            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
+            const numbers = /\b(\d+)\b/g;
+            const preprocessor = /^#\s*(include|define|ifdef|ifndef|endif|pragma)\b/gm;
+            const functions = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g;
+            
+            let highlighted = code;
+            
+            // Order matters - do comments first to avoid highlighting inside them
+            highlighted = highlighted.replace(comments, '<span class="comment">$1</span>');
+            highlighted = highlighted.replace(strings, '<span class="string">$1</span>');
+            highlighted = highlighted.replace(preprocessor, '<span class="preprocessor">#$1</span>');
+            highlighted = highlighted.replace(keywords, '<span class="keyword">$1</span>');
+            highlighted = highlighted.replace(numbers, '<span class="number">$1</span>');
+            
+            return highlighted;
         }
 
         function createCodeBlock(filename, code, isCollapsed = true) {
             const id = 'code-' + Math.random().toString(36).substr(2, 9);
+            const highlighted = highlightCppCode(escapeHtml(code));
+            
             return `
                 <div class="code-container ${isCollapsed ? 'collapsed' : ''}" id="${id}">
                     <div class="code-header">${filename}</div>
-                    <div class="code-content">${escapeHtml(code)}</div>
+                    <div class="code-content">${highlighted}</div>
                 </div>
                 ${isCollapsed ? `<button class="expand-btn" onclick="toggleCode('${id}', this)">EXPAND</button>` : ''}
             `;
@@ -391,7 +442,7 @@
                     html += `<div class="contest-title">${folder.name.replace(/_/g, ' ')}</div>`;
                     
                     if (parsedReadme) {
-                        html += `<div class="readme-note">${escapeHtml(parsedReadme)}</div>`;
+                        html += `<div class="readme-note">${parsedReadme}</div>`;
                     }
 
                     if (images.length > 0) {
