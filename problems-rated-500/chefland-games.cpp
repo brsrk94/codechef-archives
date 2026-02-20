@@ -1,4 +1,4 @@
-https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/CHEFGAMES
+// https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/CHEFGAMES
 #include <bits/stdc++.h>
 using namespace std;
 
